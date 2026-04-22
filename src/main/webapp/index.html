@@ -1,197 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Campus API</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background: #0f172a;
-            color: #e2e8f0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .container {
-            text-align: center;
-            padding: 40px;
-            max-width: 700px;
-        }
-        .badge {
-            display: inline-block;
-            background: #22c55e22;
-            color: #22c55e;
-            border: 1px solid #22c55e44;
-            padding: 6px 16px;
-            border-radius: 999px;
-            font-size: 13px;
-            margin-bottom: 24px;
-        }
-        .dot {
-            width: 8px; height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 6px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-        h1 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, #6366f1, #22c55e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        p {
-            color: #94a3b8;
-            font-size: 16px;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-        .endpoints {
-            display: grid;
-            gap: 12px;
-            text-align: left;
-        }
-        .endpoint {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 10px;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .method {
-            font-size: 11px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 5px;
-            min-width: 60px;
-            text-align: center;
-        }
-        .get    { background: #16a34a22; color: #4ade80; border: 1px solid #16a34a44; }
-        .post   { background: #2563eb22; color: #60a5fa; border: 1px solid #2563eb44; }
-        .delete { background: #dc262622; color: #f87171; border: 1px solid #dc262644; }
-        .url {
-            font-family: 'Courier New', monospace;
-            font-size: 13px;
-            color: #e2e8f0;
-            flex: 1;
-        }
-        .desc {
-            font-size: 12px;
-            color: #64748b;
-        }
-        h2 {
-            font-size: 14px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 14px;
-            text-align: left;
-        }
-        .section { margin-bottom: 28px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Campus API</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #111827;
+    color: #e5e7eb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Container */
+.container {
+    max-width: 720px;
+    padding: 35px;
+}
+
+/* Status Badge */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f9731620;
+    color: #fb923c;
+    border: 1px solid #f9731640;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: #fb923c;
+    border-radius: 50%;
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* Title */
+h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #f9fafb;
+}
+
+.subtitle {
+    color: #9ca3af;
+    font-size: 15px;
+    margin-bottom: 35px;
+    line-height: 1.6;
+}
+
+/* Section */
+.section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 13px;
+    color: #6b7280;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* Endpoint cards */
+.endpoint {
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    transition: 0.2s ease;
+}
+
+.endpoint:hover {
+    background: #273449;
+}
+
+/* Method tags */
+.method {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 9px;
+    border-radius: 6px;
+    min-width: 58px;
+    text-align: center;
+}
+
+/* Softer colors */
+.get {
+    background: #10b98120;
+    color: #34d399;
+}
+
+.post {
+    background: #3b82f620;
+    color: #93c5fd;
+}
+
+.delete {
+    background: #ef444420;
+    color: #fca5a5;
+}
+
+/* URL */
+.url {
+    font-family: monospace;
+    font-size: 13px;
+    margin-left: 12px;
+    flex: 1;
+}
+
+/* Description */
+.desc {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="badge"><span class="dot"></span>Server is running</div>
-        <h1>Smart Campus API</h1>
-        <p>RESTful API for managing campus rooms and IoT sensors.<br>
-        Use Postman or curl to interact with the endpoints below.</p>
 
-        <div class="section">
-            <h2>Discovery</h2>
-            <div class="endpoints">
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/</span>
-                    <span class="desc">API discovery & metadata</span>
-                </div>
-            </div>
-        </div>
+<div class="container">
 
-        <div class="section">
-            <h2>Rooms</h2>
-            <div class="endpoints">
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/rooms</span>
-                    <span class="desc">List all rooms</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method post">POST</span>
-                    <span class="url">/api/v1/rooms</span>
-                    <span class="desc">Create a new room</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/rooms/{roomId}</span>
-                    <span class="desc">Get a specific room</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method delete">DELETE</span>
-                    <span class="url">/api/v1/rooms/{roomId}</span>
-                    <span class="desc">Delete a room</span>
-                </div>
-            </div>
-        </div>
+    <div class="badge">
+        <span class="dot"></span> API Online
+    </div>
 
-        <div class="section">
-            <h2>Sensors</h2>
-            <div class="endpoints">
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/sensors</span>
-                    <span class="desc">List all sensors</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/sensors?type=CO2</span>
-                    <span class="desc">Filter sensors by type</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method post">POST</span>
-                    <span class="url">/api/v1/sensors</span>
-                    <span class="desc">Register a new sensor</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/sensors/{sensorId}</span>
-                    <span class="desc">Get a specific sensor</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method delete">DELETE</span>
-                    <span class="url">/api/v1/sensors/{sensorId}</span>
-                    <span class="desc">Delete a sensor</span>
-                </div>
-            </div>
-        </div>
+    <h1>Smart Campus API</h1>
+    <p class="subtitle">
+        Manage campus rooms and IoT sensors easily.<br>
+        Use tools like Postman or curl to test endpoints.
+    </p>
 
-        <div class="section">
-            <h2>Readings</h2>
-            <div class="endpoints">
-                <div class="endpoint">
-                    <span class="method get">GET</span>
-                    <span class="url">/api/v1/sensors/{sensorId}/readings</span>
-                    <span class="desc">Get all readings for a sensor</span>
-                </div>
-                <div class="endpoint">
-                    <span class="method post">POST</span>
-                    <span class="url">/api/v1/sensors/{sensorId}/readings</span>
-                    <span class="desc">Add a new reading</span>
-                </div>
-            </div>
+    <!-- Discovery -->
+    <div class="section">
+        <h2>Discovery</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/</span>
+            <span class="desc">API info</span>
         </div>
     </div>
+
+    <!-- Rooms -->
+    <div class="section">
+        <h2>Rooms</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/rooms</span>
+            <span class="desc">All rooms</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <span class="url">/api/v1/rooms</span>
+            <span class="desc">Create room</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/rooms/{id}</span>
+            <span class="desc">Single room</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method delete">DELETE</span>
+            <span class="url">/api/v1/rooms/{id}</span>
+            <span class="desc">Remove room</span>
+        </div>
+    </div>
+
+    <!-- Sensors -->
+    <div class="section">
+        <h2>Sensors</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/sensors</span>
+            <span class="desc">All sensors</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/sensors?type=CO2</span>
+            <span class="desc">Filter by type</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <span class="url">/api/v1/sensors</span>
+            <span class="desc">Add sensor</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/sensors/{id}</span>
+            <span class="desc">Single sensor</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method delete">DELETE</span>
+            <span class="url">/api/v1/sensors/{id}</span>
+            <span class="desc">Remove sensor</span>
+        </div>
+    </div>
+
+    <!-- Readings -->
+    <div class="section">
+        <h2>Readings</h2>
+
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <span class="url">/api/v1/sensors/{id}/readings</span>
+            <span class="desc">Sensor data</span>
+        </div>
+
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <span class="url">/api/v1/sensors/{id}/readings</span>
+            <span class="desc">Add reading</span>
+        </div>
+    </div>
+
+</div>
+
 </body>
 </html>
